@@ -1,0 +1,39 @@
+<h1>Image Analysis</h1>
+
+<div class="drop-zone"
+     (dragover)="onDragOver($event)" 
+     (dragenter)="onDragEnter($event)" 
+     (dragleave)="onDragLeave($event)" 
+     (drop)="onDrop($event)">
+  <p [hidden]="selectedFile"><i>Arrastra o suelta una imagen aquí.</i></p>
+  <p *ngIf="selectedFile">{{ selectedFile.name }}</p>
+
+</div>
+<input type="file" style="display: none" (change)="onFileChange($event)" />
+<div style="margin-left: 40%;margin-top: 10px;">
+    <button class="btn btn-success" (click)="uploadImage()">Upload Image</button>
+    <button class="btn btn-danger" (click)="cancelImage()" style="margin-left: 10px;">Cancel</button>
+</div>
+<hr>
+<div style="display: flex;justify-content: space-between;margin: 10px;">
+    <div>
+        <h3>Size</h3>
+        <label>Width: &nbsp;<label>{{width}}</label></label><br>
+        <label>Height: &nbsp;<label>{{height}}</label></label>
+    </div>
+    <div>
+        <h3>MegaPixels</h3>
+        <label>{{megapixels}}</label><label>MP</label>
+    </div>
+    <div>
+        <h3>Mean color</h3>
+        <div style="height: 100px;width: 100px;" [style.backgroundColor]="mean_color">
+        </div>
+        <p>{{mean_color}}</p>
+    </div>
+    <div>
+        <h3>People counter</h3>
+        <label>Nº of people : &nbsp;</label><label>{{people_count}}</label>
+    </div>
+    <img [src]="imageSrc" style="max-width: 100%;">
+</div>
